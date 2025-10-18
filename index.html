@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Winners</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-y: auto;
+      padding: 2rem 1rem 4rem;
+      position: relative;
+    }
+
+    .bg-video,
+    .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: -1;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      color: #00ffc6;
+      text-shadow: 0 0 12px #00ffc6;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .winners-container {
+      width: min(95%, 900px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .winner-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 255, 198, 0.2);
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(20px) saturate(150%);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .winner-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px #00ffc6;
+    }
+
+    .winner-name {
+      color: #00ffc6;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.4rem;
+      transition: color 0.25s ease;
+    }
+
+    .winner-name:hover {
+      color: #fff;
+    }
+
+    .winner-prize {
+      font-size: 1rem;
+      color: #fff;
+      opacity: 0.9;
+      margin-bottom: 0.3rem;
+    }
+
+    .winner-date {
+      font-size: 0.85rem;
+      color: #ccc;
+      opacity: 0.8;
+    }
+
+    .lx-logo {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #00ffc6;
+      letter-spacing: 3px;
+      text-shadow: 0 0 8px #00ffc6;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .winner-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <video autoplay muted loop playsinline class="bg-video" id="bgVideo">
+    <source src="" type="video/mp4"/>
+  </video>
+  <img src="your-fallback-image.jpg" alt="Background" class="bg-image" id="bgImage" style="display:none;" />
+  <div class="bg-overlay"></div>
+
+
+  <div class="winners-container" id="winnersList"></div>
+
+
+  <script>
+    const bgVideo = document.getElementById('bgVideo');
+    const bgImage = document.getElementById('bgImage');
+    bgVideo.onerror = () => {
+      bgVideo.style.display = 'none';
+      bgImage.style.display = 'block';
+    };
+
+    const winners = [
+      { name: "----", prize: "₱50", facebook: "", date: "October 18, 2025" },
+ 
+    ];
+
+    const winnersList = document.getElementById('winnersList');
+
+    winners.forEach(w => {
+      const card = document.createElement('div');
+      card.className = 'winner-card';
+      card.innerHTML = `
+        <a href="${w.facebook}" target="_blank" class="winner-name">${w.name}</a>
+        <p class="winner-prize">${w.prize}</p>
+        <p class="winner-date">${w.date}</p>
+      `;
+      winnersList.appendChild(card);
+    });
+  </script>
+</body>
+</html>
