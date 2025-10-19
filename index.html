@@ -1,168 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Winners</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>Awardees</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;     
+    outline: none !important;                 
+    box-shadow: none !important;    
+  }
+  html, body {
+    -webkit-user-select: none;  
+    -webkit-touch-callout: none;
+    user-select: none;
+    touch-action: manipulation; 
+  }
 
-    body {
-      height: 100vh;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #0a0a0a;
-      color: #fff;
-      overflow-y: auto;
-      padding: 2rem 1rem 4rem;
-      position: relative;
-    }
+  body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+    padding: 2rem 1rem 4rem;
+    position: relative;
+  }
 
-    .bg-video,
-    .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
+  .bg-video,
+  .bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
 
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: -1;
-    }
+  .bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+  }
 
+  h1 {
+    font-size: 1.8rem;
+    color: #00ffc6;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-align: left;
+    max-width: 560px;
+    width: 100%;
+    margin-left: 35px;
+  }
+
+  .info-note {
+    max-width: 800px;
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 auto 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .info-note h2 {
+    color: #00ffc6;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .info-note ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .info-note li {
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+
+  .info-note p:last-child {
+    color: #00ffc6;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .winners-container {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .winner-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 198, 0.15);
+    border-radius: 10px;
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #fff;
+    transition: transform 0.25s ease;
+    word-break: break-word;
+  }
+
+  .winner-card:hover {
+    transform: translateY(-1px);
+  }
+
+  .winner-name {
+    color: #00ffc6;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .winner-prize,
+  .winner-date {
+    margin-left: 0.5rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .winner-date {
+    font-size: 0.75rem;
+    color: #ccc;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
     h1 {
-      font-size: 2.3rem;
-      color: #00ffc6;
-      text-shadow: 0 0 12px #00ffc6;
-      margin-bottom: 1.5rem;
-      letter-spacing: 1px;
-      text-align: center;
+      font-size: 1.5rem;
+      margin-left: 20px;
     }
-
-    .winners-container {
-      width: min(95%, 900px);
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
     .winner-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(0, 255, 198, 0.2);
-      border-radius: 20px;
-      padding: 1.5rem;
-      text-align: center;
-      backdrop-filter: blur(20px) saturate(150%);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.6rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
     }
-
-    .winner-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 20px #00ffc6;
-    }
-
-    .winner-name {
-      color: #00ffc6;
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.4rem;
-      transition: color 0.25s ease;
-    }
-
-    .winner-name:hover {
-      color: #fff;
-    }
-
-    .winner-prize {
-      font-size: 1rem;
-      color: #fff;
-      opacity: 0.9;
-      margin-bottom: 0.3rem;
-    }
-
+    .winner-prize,
     .winner-date {
-      font-size: 0.85rem;
-      color: #ccc;
-      opacity: 0.8;
+      margin-left: 0;
     }
-
-    .lx-logo {
-      position: fixed;
-      bottom: 15px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #00ffc6;
-      letter-spacing: 3px;
-      text-shadow: 0 0 8px #00ffc6;
-      opacity: 0.8;
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-      .winner-card {
-        padding: 1.2rem;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <video autoplay muted loop playsinline class="bg-video" id="bgVideo">
-    <source src="https://motionbgs.com/media/2978/minecraft-sunset.960x540.mp4" type="video/mp4"/>
-  </video>
-  <img src="your-fallback-image.jpg" alt="Background" class="bg-image" id="bgImage" style="display:none;" />
-  <div class="bg-overlay"></div>
+<video autoplay muted loop playsinline class="bg-video" id="bgVideo">
+  <source src="https://motionbgs.com/media/2978/minecraft-sunset.960x540.mp4" type="video/mp4"/>
+</video>
+<img src="your-fallback-image.jpg" alt="Background" class="bg-image" id="bgImage" style="display:none;" />
+<div class="bg-overlay"></div>
+
+<div class="info-note">
+  <h2>To Join & Win</h2>
+  <ul>
+    <li><strong>Send your phone number</strong> to join.</li>
+    <li>Select your preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
+    <li>Joining is <strong>completely voluntary</strong>.</li>
+    <li>Admin will put all submitted numbers into a <strong>random draw</strong>. The number selected will be the winner.</li>
+    <li>The prize is <strong>legit</strong> and will be sent safely, you just have to wait. <strong>Don't worry cz your identity stays completely anonymous</strong> and will never be misused.</li>
+  </ul>
+<p style="font-size:1rem; line-height:1.2; display:flex; align-items:center; gap:0.3rem;">
+  BEST OF LUCK! —
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmNnOTY4M2ZicDVzc2dhaTQ5ODc3ZGh3YXo4dzhxN2IwaHQycjhpYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FVoudKCk1y12mvY3VE/giphy.gif" 
+       alt="Beluga" 
+       style="width:1em; height:1em; border-radius:50%;">
+  BEGULGA
+</p>
+</div>
 
 
-  <div class="winners-container" id="winnersList"></div>
+<!--<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmNnOTY4M2ZicDVzc2dhaTQ5ODc3ZGh3YXo4dzhxN2IwaHQycjhpYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FVoudKCk1y12mvY3VE/giphy.gif" 
+     alt="Beluga" 
+     style="max-width:120px; display:block; margin-top:0.5rem;">-->
 
+<h1>Winner:</h1>
+<div class="winners-container" id="winnersList"></div>
 
-  <script>
-    const bgVideo = document.getElementById('bgVideo');
-    const bgImage = document.getElementById('bgImage');
-    bgVideo.onerror = () => {
-      bgVideo.style.display = 'none';
-      bgImage.style.display = 'block';
-    };
+<script>
+const bgVideo = document.getElementById('bgVideo');
+const bgImage = document.getElementById('bgImage');
+bgVideo.onerror = () => {
+  bgVideo.style.display = 'none';
+  bgImage.style.display = 'block';
+};
 
-    const winners = [
-      { name: "----", prize: "₱50", facebook: "", date: "October 19, 2025" },
- 
-    ];
+const winners = [
+  { name: "---- ----", prize: "₱50", facebook: "", date: "October 19, 2025" },
 
-    const winnersList = document.getElementById('winnersList');
+];
 
-    winners.forEach(w => {
-      const card = document.createElement('div');
-      card.className = 'winner-card';
-      card.innerHTML = `
-        <a href="${w.facebook}" target="_blank" class="winner-name">${w.name}</a>
-        <p class="winner-prize">${w.prize}</p>
-        <p class="winner-date">${w.date}</p>
-      `;
-      winnersList.appendChild(card);
-    });
-  </script>
+const winnersList = document.getElementById('winnersList');
+
+winners.forEach(w => {
+  const card = document.createElement('div');
+  card.className = 'winner-card';
+  card.innerHTML = `
+    <a href="${w.facebook}" target="_blank" class="winner-name">${w.name}</a>
+    <span class="winner-prize">${w.prize}</span>
+    <span class="winner-date">${w.date}</span>
+  `;
+  winnersList.appendChild(card);
+});
+</script>
+
 </body>
 </html>
