@@ -101,22 +101,4 @@ handleArrowVisibility('proofList', 'proofArrow');
 document.querySelector('.info-note').id = 'infoBox';
 handleArrowVisibility('infoBox', 'infoArrow');
 
-document.addEventListener('DOMContentLoaded', () => {
-  const css = `
-    * {
-      -webkit-tap-highlight-color: transparent !important;
-      -webkit-user-select: none !important;
-      -moz-user-select: none !important;
-      -ms-user-select: none !important;
-      user-select: none !important;
-      outline: none !important;
-    }
-    a, img, button, div, span {
-      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    }
-    *:focus { outline: none !important; box-shadow: none !important; }
-  `;
-  const style = document.createElement('style');
-  style.textContent = css;
-  document.head.appendChild(style);
-});
+
