@@ -106,6 +106,40 @@ h1 {
   line-height: 1.5;
 }
 
+/*CHANGABBLE IMPORTANT NOTE STYLE*/
+.important-note {
+  list-style: none;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 12px;
+  color: #fff;
+  position: relative;
+  font-family: sans-serif;
+    background: #111;
+
+}
+
+.important-note::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 14px;
+  background: linear-gradient(120deg, lime, cyan, magenta, lime);
+  background-size: 300% 300%;
+  z-index: -1;
+  animation: flow 2s linear infinite;
+}
+
+@keyframes flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/*CHANGABBLE IMPORTANT NOTE STYLE*/
+
 .winners-container {
   display: flex;
   flex-direction: column;
@@ -197,3 +231,6 @@ h1 {
   0%, 100% { transform: translate(-50%, 0); }
   50% { transform: translate(-50%, -6px); }
 }
+
+
+
