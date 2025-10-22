@@ -80,8 +80,15 @@ h1 {
   color: #00ffc6;
   font-weight: 600;
   font-size: 1.2rem;
-  margin-bottom: 0.8rem;
 }
+
+.purpose h2 {
+  color: #00ffc6;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
 
 .info-note ul {
   list-style: none;
@@ -187,7 +194,6 @@ h1 {
   opacity: 0.8;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   body { background-size: contain; background-attachment: scroll; background-position: center top; }
   .winner-card img { max-height: 200px; }
@@ -225,6 +231,34 @@ h1 {
   color: white;
   font-size: 2rem;
   cursor: pointer;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -6px); }
+}
+
+.info-note,
+.winner-box,
+.winner-card,
+.important-note {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: #00ffc6;
+  text-shadow: 0 0 8px #00ffc6;
+  animation: bounce 1.2s infinite;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 @keyframes bounce {
