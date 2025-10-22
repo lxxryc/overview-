@@ -1,6 +1,38 @@
 const bgVideo = document.getElementById('bgVideo');
 const bgImage = document.getElementById('bgImage');
-bgVideo.onerror = () => { bgVideo.style.display = 'none'; bgImage.style.display = 'block'; };
+
+function showImage() {
+  bgVideo.style.display = 'none';
+  bgImage.style.display = 'block';
+}
+
+function showVideo() {
+  bgVideo.style.display = 'block';
+  bgImage.style.display = 'none';
+}
+
+const videoSource = bgVideo.querySelector('source')?.src;
+
+if (!videoSource || videoSource.trim() === '') {
+  showImage();
+} else {
+  const playPromise = bgVideo.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        showVideo();
+      })
+      .catch(() => {
+        showImage();
+      });
+  }
+
+
+  bgVideo.addEventListener('error', showImage);
+  bgVideo.addEventListener('stalled', showImage);
+  bgVideo.addEventListener('abort', showImage);
+}
+
 
 const winners = [
   { name: "Gab", prize: "₱60", facebook: "https://web.facebook.com/thisisnotgab", date: "October 19, 2025" },
@@ -83,23 +115,30 @@ imgModal.addEventListener('click', (e) => {
 function handleArrowVisibility(containerId, arrowId) {
   const box = document.getElementById(containerId);
   const arrow = document.getElementById(arrowId);
-  function checkScroll() {
-    if (box.scrollHeight > box.clientHeight && box.scrollTop + box.clientHeight < box.scrollHeight - 10) {
-      arrow.style.display = 'block';
-    } else {
-      arrow.style.display = 'none';
+  if (!box || !arrow) return;
+
+  function updateArrow() {
+    const canScroll = box.scrollHeight > box.clientHeight + 2;
+    if (!canScroll) {
+      arrow.style.opacity = "0"; 
+      return;
     }
+
+    arrow.style.opacity = box.scrollTop <= 2 ? "1" : "0";
   }
-  box.addEventListener('scroll', checkScroll);
-  window.addEventListener('resize', checkScroll);
-  window.addEventListener('load', checkScroll);
-  checkScroll();
+
+  box.addEventListener("scroll", updateArrow);
+  window.addEventListener("resize", updateArrow);
+  window.addEventListener("load", updateArrow);
+
+  updateArrow(); 
 }
 
-handleArrowVisibility('winnersList', 'winnerArrow');
-handleArrowVisibility('proofList', 'proofArrow');
-document.querySelector('.info-note').id = 'infoBox';
-handleArrowVisibility('infoBox', 'infoArrow');
+handleArrowVisibility("infoBox", "infoArrow");
+handleArrowVisibility("winnersList", "winnerArrow");
+handleArrowVisibility("proofList", "proofArrow");
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const css = `
@@ -138,3 +177,5 @@ closeFaq.addEventListener('click', () => {
 faqModal.addEventListener('click', (e) => {
   if (e.target === faqModal) faqModal.style.display = 'none';
 });
+
+
