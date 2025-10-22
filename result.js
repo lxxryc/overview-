@@ -120,3 +120,21 @@ document.addEventListener('DOMContentLoaded', () => {
   style.textContent = css;
   document.head.appendChild(style);
 });
+
+
+// FAQ 
+const faqBtn = document.getElementById('faqBtn');
+const faqModal = document.getElementById('faqModal');
+const closeFaq = document.getElementById('closeFaq');
+
+faqBtn.addEventListener('click', () => {
+  faqModal.style.display = 'flex';
+});
+
+closeFaq.addEventListener('click', () => {
+  faqModal.style.display = 'none';
+});
+
+faqModal.addEventListener('click', (e) => {
+  if (e.target === faqModal) faqModal.style.display = 'none';
+});
