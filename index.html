@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="result.css">
-<title>result</title>
+
 </head>
 <body>
 
@@ -16,15 +16,28 @@
 <div class="bg-overlay"></div>
 
 <div class="info-note" style="position: relative; max-height: 250px; overflow-y: auto;">
-  <h2>How It Works</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>How It Works</h2>
+    <button id="faqBtn" style="
+      background: none;
+      border: none;
+      color: #00ffc6;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-shadow: 0 0 8px #00ffc6;
+      transition: color 0.2s ease;
+    ">FAQ</button>
+  </div>
+
   <ul style="text-align: justify;">
-    <li>Select preferred reward: <strong>Load</strong> /     <strong>GCash</strong>.</li>
+    <li>Select preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
     <li><strong>Submit your details.</strong></li>
     <li>Admin will put all submitted numbers into a <strong>random draw.</strong></li>
     <li>The number selected will be the winner.</li>
     <li><strong style="color: darkorange;">Important</strong>: The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time. Don't worry cz your identity stays completely unknown and will never be misused.</li>
     <li><strong style="color: darkorange;">Important</strong>: Joining is <strong>completely voluntary</strong>.</li>
-    <li class="important-note"><strong style="color: #00ffc6;">Louís Ryc:</strong> Please use real contact information so that I can send the reward properly. Sayang man gud kung fake. <strong style="color:;">G'luck!</strong></li>
+    <li class="important-note"><strong style="color: #00ffc6;">Louís Ryc:</strong> Please use real contact information so that I can send the reward properly. Sayang man gud kung fake. <strong>G'luck!</strong></li>
   </ul>
 
   <div id="infoArrow" style="
@@ -34,13 +47,69 @@
     transform: translateX(-50%);
     font-size: 1.2rem;
     color: #00ffc6;
-    text-shadow: 0 0 8px #00ffc6;
+    text-shadow: 0 0 8px #ffa200;
     animation: bounce 1.2s infinite;
     z-index: 10;
     display: none;
     pointer-events: none;
   ">&darr;</div>
 </div>
+
+
+<div id="faqModal" style="
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+">
+  <div style="
+    background: rgba(17,17,17,0.95);
+    border: 1px solid rgba(0,255,198,0.3);
+    box-shadow: 0 0 15px rgba(0,255,198,0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 400px;
+    color: #fff;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+  ">
+    <span id="closeFaq" style="
+      position: absolute;
+      top: 10px;
+      @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+      right: 15px;
+      font-size: 1.5rem;
+      color: #00ffc6;
+      cursor: pointer;
+      
+      text-shadow: 0 0 8px #00ffc6;
+    ">&times;
+    </span>
+
+    <h3 style="color:#00ffc6; margin-bottom: 10px;">Purpose</h3>
+    <p style="font-size: 0.9rem; line-height: 1.5; text-align: justify;">
+      <strong>Louis Ryc</strong>: I created this initiative to share a portion of my extra funds kung naa  subra.  
+      The main purpose is simply to share whenever I can. I understand tthat the amount may be small, so I hope ma-appreciate rasab ninyo even in its simplicity.
+      <br><br>
+      For your assurance, your personal information will remain completely confidential and secure. 
+      Know that joining is voluntary. Even if my account appears inactive, all submissions are still properly received and recorded.
+      <br><br>
+      Please pay attention to the details on the main page, especially if nay visible value. 
+      Know that while the prize is legit, if the value appears as pending or unavailable, then that’s it, and
+      if a countdown is displayed, that indicates something.
+    </p>
+  </div>
+</div>
+
 
 <div class="winner-box" style="position: relative;">
   <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Winner</h4>
