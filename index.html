@@ -4,147 +4,58 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="result.css">
-
 </head>
 <body>
 
 <video autoplay muted loop playsinline class="bg-video" id="bgVideo">
-  <source src="https://motionbgs.com/media/2978/minecraft-sunset.960x540.mp4" type="video/mp4"/>
+  <source src="" type="video/mp4" />
 </video>
-
-<img src="your-fallback-image.jpg" alt="Background" class="bg-image" id="bgImage" style="display:none;" />
+<img src="https://wallpapers.com/images/high/minecraft-phone-top-view-green-park-0hfmfnc5vdi5wms0.webp" class="bg-image" id="bgImage" />
 <div class="bg-overlay"></div>
 
-<div class="info-note" style="position: relative; max-height: 250px; overflow-y: auto;">
-  <div style="display: flex; justify-content: space-between; align-items: center;">
-    <h2>How It Works</h2>
-    <button id="faqBtn" style="
-      background: none;
-      border: none;
-      color: #00ffc6;
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-shadow: 0 0 8px #00ffc6;
-      transition: color 0.2s ease;
-    ">FAQ</button>
-  </div>
-
-  <ul style="text-align: justify;">
+<div class="info-note" id="infoBox" style="position: relative; max-height: 250px; overflow-y: auto;">
+  <div><h2>How It Works</h2></div>
+  <ul style="text-align: justify; line-height: 1.2; margin-top: 10px;">
     <li>Select preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
     <li><strong>Submit your details.</strong></li>
     <li>Admin will put all submitted numbers into a <strong>random draw.</strong></li>
     <li>The number selected will be the winner.</li>
-    <li><strong style="color: darkorange;">Important</strong>: The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time. Don't worry cz your identity stays completely unknown and will never be misused.</li>
+    <li><strong style="color: darkorange;">Important</strong>: The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time.</li>
     <li><strong style="color: darkorange;">Important</strong>: Joining is <strong>completely voluntary</strong>.</li>
     <li class="important-note"><strong style="color: #00ffc6;">Louís Ryc:</strong> Please use real contact information so that I can send the reward properly. Sayang man gud kung fake. <strong>G'luck!</strong></li>
   </ul>
 
-  <div id="infoArrow" style="
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.2rem;
-    color: #00ffc6;
-    text-shadow: 0 0 8px #ffa200;
-    animation: bounce 1.2s infinite;
-    z-index: 10;
-    display: none;
-    pointer-events: none;
-  ">&darr;</div>
-</div>
-
-
-<div id="faqModal" style="
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-">
-  <div style="
-    background: rgba(17,17,17,0.95);
-    border: 1px solid rgba(0,255,198,0.3);
-    border-radius: 12px;
-    padding: 1.5rem;
-    max-width: 400px;
-    color: #fff;
-    position: relative;
-    animation: fadeIn 0.3s ease;
-  ">
-    <span id="closeFaq" style="
-      position: absolute;
-      top: 10px;
-      @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-      right: 15px;
-      font-size: 1.5rem;
-      color: #00ffc6;
-      cursor: pointer;
-      
-      text-shadow: 0 0 8px #00ffc6;
-    ">&times;
-    </span>
-
-    <h3 style="color:#00ffc6; margin-bottom: 10px;">Purpose</h3>
-    <p style="font-size: 0.9rem; line-height: 1.5; text-align: justify;">
-      <strong>Louis Ryc</strong>: I created this initiative to share a portion of my extra funds whenever available.  
-The main purpose is simple — to share whenever I can. I understand that the amount may be small; hence, I hope you’ll still appreciate it despite its simplicity.  
-<br><br>
-For your assurance, all personal information will remain completely confidential and secure.  
-Participation is completely voluntary. Even if my account appears inactive, all submissions are securely received and recorded, and the prize will be sent safely.  
-<br><br>
-Please pay attention to the details on the first page, especially if there’s a displayed value.  
-While the prize is legit, values may still vary; and if the value appears as pending or unavailable, that’s simply how it is. If a countdown is displayed, it indicates something important — so stay tuned!
+  <div class="purpose">
+    <h2>Purpose</h2>
+    <p style="line-height: 1.5; text-align: justify; margin-top: 10px;">
+      <strong>Louis Ryc</strong>: I created this initiative to share a portion of my extra funds whenever available.
+      The main purpose is simple — to share whenever I can. I understand that the amount may be small; hence, I hope you’ll still appreciate it despite its simplicity.  
+      <br><br>
+      <span style="color: #00ffc6;">For your assurance</span>, all personal information will remain completely <span>unknown</span> and will never be <span>misused</span>. 
+      Participation is completely <span>voluntary</span>. Even if my account appears inactive, all submissions are securely received and recorded, and the prize will be sent safely.  
+      <br><br>
+      Please pay attention to the details on the first page, especially if there’s a displayed <span style="color: lime;">value</span>.  
+      While the prize is legit, values may still vary; and if the value appears as pending or unavailable, that’s simply how it is. If a countdown is displayed, it indicates something important — <span>so stay tuned!</span>
     </p>
   </div>
-</div>
 
+  <div id="infoArrow" class="scroll-arrow">&darr;</div>
+</div>
 
 <div class="winner-box" style="position: relative;">
   <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Winner</h4>
-  <div class="winners-container" id="winnersList" style="max-height: 250px; overflow-y: auto;"></div>
-
-  <div id="winnerArrow" style="
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.2rem;
-    color: #00ffc6;
-    text-shadow: 0 0 8px #00ffc6;
-    animation: bounce 1.2s infinite;
-    z-index: 10;
-    display: none;
-    pointer-events: none;
-  ">&darr;</div>
+  <a href="https://web.facebook.com/thisisnotgab" target="_blank" style="text-decoration: none;">
+    <div class="winners-container" id="winnersList" style="max-height: 250px; overflow-y: auto; cursor: pointer;">
+    </div>
+  </a>
+  <div id="winnerArrow" class="scroll-arrow">&darr;</div>
 </div>
 
 <div class="winner-box" style="position: relative;">
   <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Authenticity</h4>
-  <div class="winners-container" id="proofList" style="max-height: 250px; overflow-y: auto;"></div>
-
-  <div id="proofArrow" style="
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.2rem;
-    color: #00ffc6;
-    text-shadow: 0 0 8px #00ffc6;
-    animation: bounce 1.2s infinite;
-    z-index: 10;
-    display: none;
-    pointer-events: none;
-  ">&darr;</div>
+  <div class="winners-container" id="proofList" style="max-height: 250px; overflow-y: auto;">
+  </div>
+  <div id="proofArrow" class="scroll-arrow">&darr;</div>
 </div>
 
 <div id="imgModal">
@@ -153,6 +64,5 @@ While the prize is legit, values may still vary; and if the value appears as pen
 </div>
 
 <script src="result.js"></script>
-
 </body>
 </html>
