@@ -287,13 +287,10 @@ h1 {
 
 
 .section-divider {
-  height: 3px;
-  background: linear-gradient(120deg, #00ffc6, #00aaff, #ff00cc, #00ffc6);
-  background-size: 300% 300%;
-  animation: flowMove 3s linear infinite;
-}
-@keyframes flowMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  width: 100%;
+  height: 2px;
+  margin: 1.5rem auto;
+  background-color: rgba(0, 255, 198, 0.4); 
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(0, 255, 198, 0.6);
 }
