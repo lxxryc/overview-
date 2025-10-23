@@ -35,8 +35,8 @@ if (!videoSource || videoSource.trim() === '') {
 
 
 const winners = [
-  { name: "Gab", prize: "₱60", facebook: "https://web.facebook.com/thisisnotgab", date: "October 19, 2025" },
-  { name: "**** ****", prize: "₱100", facebook: "", date: "October 26, 2025" },
+  { name: "Gab", prize: "$60", facebook: "https://web.facebook.com/thisisnotgab", date: "October 19, 2025" },
+  { name: "**** ****", prize: "$100", facebook: "", date: "October 26, 2025" },
 
  
 
