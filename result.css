@@ -1,4 +1,4 @@
-* {
+    * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -100,6 +100,8 @@ h1 {
   font-weight: 500;
 }
 
+
+/*
 .important-note {
   margin-top: 0.8rem;
   padding: 0.8rem;
@@ -112,7 +114,6 @@ h1 {
   line-height: 1.5;
 }
 
-/*CHANGABBLE IMPORTANT NOTE STYLE*/
 .important-note {
   list-style: none;
   padding: 1rem;
@@ -144,7 +145,7 @@ h1 {
   100% { background-position: 0% 50%; }
 }
 
-/*CHANGABBLE IMPORTANT NOTE STYLE*/
+*/
 
 .winners-container {
   display: flex;
@@ -282,4 +283,17 @@ h1 {
   -webkit-backdrop-filter: none !important;
   box-shadow: none !important;
   
+}
+
+
+.section-divider {
+  height: 3px;
+  background: linear-gradient(120deg, #00ffc6, #00aaff, #ff00cc, #00ffc6);
+  background-size: 300% 300%;
+  animation: flowMove 3s linear infinite;
+}
+@keyframes flowMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
