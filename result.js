@@ -36,6 +36,8 @@ if (!videoSource || videoSource.trim() === '') {
 
 const winners = [
   { name: "Gab", prize: "₱60", facebook: "https://web.facebook.com/thisisnotgab", date: "October 19, 2025" },
+  { name: "**** ****", prize: "₱100", facebook: "", date: "October 26, 2025" },
+
  
 
 
@@ -159,23 +161,3 @@ document.addEventListener('DOMContentLoaded', () => {
   style.textContent = css;
   document.head.appendChild(style);
 });
-
-
-// FAQ 
-const faqBtn = document.getElementById('faqBtn');
-const faqModal = document.getElementById('faqModal');
-const closeFaq = document.getElementById('closeFaq');
-
-faqBtn.addEventListener('click', () => {
-  faqModal.style.display = 'flex';
-});
-
-closeFaq.addEventListener('click', () => {
-  faqModal.style.display = 'none';
-});
-
-faqModal.addEventListener('click', (e) => {
-  if (e.target === faqModal) faqModal.style.display = 'none';
-});
-
-
