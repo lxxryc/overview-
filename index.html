@@ -7,12 +7,10 @@
 </head>
 <body>
 
-<video autoplay muted loop playsinline class="bg-video" id="bgVideo">
-  <source src="" type="video/mp4" />
-</video>
+<video autoplay muted loop playsinline class="bg-video" id="bgVideo"><source src="" type="video/mp4" /></video>
 <img src="https://wallpapers.com/images/high/minecraft-phone-top-view-green-park-0hfmfnc5vdi5wms0.webp" class="bg-image" id="bgImage" />
-<div class="bg-overlay"></div>
 
+<div class="bg-overlay"></div>
 <div class="info-note" id="infoBox" style="position: relative; max-height: 250px; overflow-y: auto;">
   <div><h2>Mechanics</h2></div>
   <ul style="text-align: justify; line-height: 1.2; margin-top: 10px;">
@@ -22,9 +20,9 @@
     <li>The number selected will be the winner.</li>
     <li><strong style="color: darkorange;">Important</strong>: The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time.</li>
     <li><strong style="color: darkorange;">Important</strong>: Joining is <strong>completely voluntary</strong>.</li>
-    <li class="important-note"><strong style="color: #00ffc6;">Louís Ryc:</strong> Please use real contact information so that I can send the reward properly. Sayang man gud kung fake. <strong>G'luck!</strong></li>
+    <li class="important-note"><strong style="color: darkorange;">Important:</strong> Kindly provide accurate contact information to ensure proper delivery of your reward. Sayang kay kung fake.<strong> G'luck!</strong></li>
   </ul>
-
+  <div class="section-divider"></div>
   <div class="purpose">
     <h2>Purpose</h2>
     <p style="line-height: 1.5; text-align: justify; margin-top: 10px;">
@@ -38,31 +36,26 @@
       While the prize is legit, values may still vary; and if the value appears as pending or unavailable, then that’s it. If a countdown is displayed, it indicates something important — <span>so stay tuned!</span>
     </p>
   </div>
-
   <div id="infoArrow" class="scroll-arrow">&darr;</div>
 </div>
-
-<div class="winner-box" style="position: relative;">
-  <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Winner</h4>
-  <a href="https://web.facebook.com/thisisnotgab" target="_blank" style="text-decoration: none;">
-    <div class="winners-container" id="winnersList" style="max-height: 250px; overflow-y: auto; cursor: pointer;">
-    </div>
-  </a>
-  <div id="winnerArrow" class="scroll-arrow">&darr;</div>
-</div>
-
-<div class="winner-box" style="position: relative;">
-  <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Authenticity</h4>
-  <div class="winners-container" id="proofList" style="max-height: 250px; overflow-y: auto;">
+  <div class="winner-box" style="position: relative;">
+    <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Winner</h4>
+    <a href="https://web.facebook.com/thisisnotgab" target="_blank" style="text-decoration: none;">
+      <div class="winners-container" id="winnersList" style="max-height: 250px; overflow-y: auto; cursor: pointer;">
+      </div>
+    </a>
+    <div id="winnerArrow" class="scroll-arrow">&darr;</div>
   </div>
-  <div id="proofArrow" class="scroll-arrow">&darr;</div>
-</div>
-
-<div id="imgModal">
-  <span id="closeModal">&times;</span>
-  <img id="modalImg" src="">
-</div>
-
+  <div class="winner-box" style="position: relative;">
+    <h4 style="color: #00ffc6; font-size: 1.2rem; margin-bottom: 10px;">Authenticity</h4>
+    <div class="winners-container" id="proofList" style="max-height: 250px; overflow-y: auto;">
+    </div>
+    <div id="proofArrow" class="scroll-arrow">&darr;</div>
+  </div>
+  <div id="imgModal">
+    <span id="closeModal">&times;</span>
+    <img id="modalImg" src="">
+  </div>
 <script src="result.js"></script>
 </body>
 </html>
