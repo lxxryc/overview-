@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="result.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="result.css">
 </head>
 <body>
 
-<video autoplay muted loop playsinline class="bg-video" id="bgVideo"><source src="" type="video/mp4" /></video>
-<img src="https://wallpapers.com/images/high/minecraft-phone-top-view-green-park-0hfmfnc5vdi5wms0.webp" class="bg-image" id="bgImage" />
-
-<div class="bg-overlay"></div>
-<div class="info-note" id="infoBox" style="position: relative; max-height: 250px; overflow-y: auto;">
-  <div><h2 class="mechanics">Mechanics</h2></div>
-  <ul style="text-align: justify; line-height: 1.2; margin-top: 10px;">
-    <li>Select preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
-    <li><strong>Submit your details.</strong></li>
-    <li>Admin will put all submitted numbers into a <strong>random draw.</strong></li>
-    <li>The number selected will be the winner.</li>
-    <li><strong style="color: darkorange;">Important</strong>: The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time.</li>
-    <li><strong style="color: darkorange;">Important</strong>: Joining is <strong>completely voluntary</strong>.</li>
-    <li class="important-note"><strong style="color: darkorange;">Important:</strong> Kindly provide accurate contact information to ensure proper delivery of your reward. Sayang kay kung fake.<strong> G'luck!</strong></li>
-  </ul>
-  <div class="purpose">
-    <h2 class="">Purpose</h2>
-    <p style="line-height: 1.5; text-align: justify; margin-top: 10px;">
-      <strong><span style="color: #00ffc6;">Louís Ryc</span></strong>: I created this initiative to share a portion of my extra funds whenever available.
-      The main purpose is simple — to share whenever I can. I understand that the amount may be small; hence, I hope you’ll still appreciate it despite its simplicity.  
-      <br><br>
-      <span style="color: #00ffc6;">For your assurance</span>, all personal information will remain completely <span>unknown</span> and will never be <span>misused</span>. 
-      Participation is completely <span>voluntary</span>. Even if my account appears inactive, all submissions are securely received and recorded, and the prize will be sent safely.  
-      <br><br>
-      Please pay attention to the details on the first page, especially if there’s a displayed <span style="color: lime;">value</span>.  
-      While the prize is legit, values may still vary; and if the value appears as pending or unavailable, then that’s it. If a countdown is displayed, it indicates something important — <span>so stay tuned!</span>
-    </p>
-  </div>
-  <div id="infoArrow" class="scroll-arrow">&darr;</div>
-</div>
-  <div class="section-divider"></div>
-  <div class="winner-box" style="position: relative;">
-    <h4 style="color: #00ffc6; font-size: 1.4rem; margin-bottom: 10px;">Winner</h4>
-    <div class="winners-container" id="winnersList" style="max-height: 250px; overflow-y: auto; cursor: pointer;">
+  <video autoplay muted loop playsinline class="bg-video" id="bgVideo"><source src="" type="video/mp4" /></video>
+  <img id="bgImage" class="bg-image" src="https://wallpapers.com/images/high/minecraft-phone-top-view-green-park-0hfmfnc5vdi5wms0.webp" alt="Background" />
+  
+  <div class="bg-overlay"></div>
+    <section class="content-box" id="infoBox">
+    <div class="top-bar">
+        <h2 class="section-title">Mechanics</h2>
+        <span class="about-btn" id="aboutBtn">About</span>
     </div>
-    <div id="winnerArrow" class="scroll-arrow">&darr;</div>
-  </div>
-  <div class="section-divider"></div>
-  <div class="winner-box" style="position: relative;">
-    <h4 style="color: #00ffc6; font-size: 1.4rem; margin-bottom: 10px;">Authenticity</h4>
-    <div class="winners-container" id="proofList" style="max-height: 250px; overflow-y: auto;">
+    <div class="scrollable-container" id="infoScroll">
+      <ul class="section-list">
+        <li>Select preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
+        <li><strong>Submit your details.</strong></li>
+        <li>Admin will put all submitted numbers into a <strong>random draw.</strong></li>
+        <li><strong style="color: darkorange;">Important</strong>: The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time.</li>
+        <li><strong style="color: darkorange;">Important</strong>: Joining is <strong>completely voluntary</strong>.</li>
+        <li><strong style="color: darkorange;">Important:</strong> Kindly provide accurate contact information to ensure proper delivery of your reward. Sayang kay kung fake.<strong> G'luck!</strong></li>
+      </ul>
+    <div id="aboutModal">
+    <span id="closeAbout">&times;</span>
+    <div class="about-content">
+        <p>
+        <strong><span style="color: #00ffc6;">Louís Ryc</span></strong>: I created this initiative to share a portion of my extra funds whenever available.
+        The main purpose is simple — to share whenever I can. I understand that the amount may be small; hence, I hope you’ll still appreciate it despite its simplicity.
+        <br><br>
+        <span style="color: #00ffc6;">For your assurance</span>, all personal information will remain completely <span>unknown</span> and will never be <span>misused</span>.
+        Participation is completely <span>voluntary</span>. Even if my account appears inactive, all submissions are securely received and recorded, and the prize will be sent safely.
+        <br><br>
+        Please pay attention to the details on the first page, especially if there’s a displayed <span style="color: lime;">value</span>.
+        While the prize is legit, values may still vary; and if the value appears as pending or unavailable, then that’s it. 
+        If a countdown is displayed, it indicates something important — <span>so stay tuned!</span>
+        </p>
     </div>
-    <div id="proofArrow" class="scroll-arrow">&darr;</div>
+    </div>
   </div>
+    <div class="scroll-arrow" id="infoArrow">&darr;</div>
+  </section>
+  <div class="section-divider"></div>
+  <section class="content-box" id="winnersBox">
+    <h2 class="section-title sticky-title">Winner</h2>
+    <div class="scrollable-container" id="winnersList"></div>
+    <div class="scroll-arrow" id="winnerArrow">&darr;</div>
+  </section>
+  <div class="section-divider"></div>
+  <section class="content-box" id="proofBox">
+    <h2 class="section-title sticky-title">Authenticity</h2>
+    <div class="scrollable-container" id="proofList"></div>
+    <div class="scroll-arrow" id="proofArrow">&darr;</div>
+  </section>
   <div id="imgModal">
     <span id="closeModal">&times;</span>
-    <img id="modalImg" src="">
+    <img id="modalImg" src="" alt="Modal image" />
   </div>
-<script src="result.js"></script>
+  <script src="result.js"></script>
 </body>
 </html>
