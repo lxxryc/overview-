@@ -286,6 +286,7 @@
   line-height: 1.5;
   overflow-y: auto;
   max-height: 80vh;
+  text-align: justify;
 }
 
 #closeAbout {
