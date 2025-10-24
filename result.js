@@ -11,153 +11,119 @@ function showVideo() {
   bgImage.style.display = 'none';
 }
 
-const videoSource = bgVideo.querySelector('source')?.src;
-
-if (!videoSource || videoSource.trim() === '') {
-  showImage();
-} else {
-  const playPromise = bgVideo.play();
-  if (playPromise !== undefined) {
-    playPromise
-      .then(() => {
-        showVideo();
-      })
-      .catch(() => {
-        showImage();
-      });
+try {
+  const videoSource = bgVideo.querySelector('source')?.getAttribute('src')?.trim();
+  if (!videoSource) {
+    showImage(); 
+  } else {
+    bgVideo.play()
+      .then(() => showVideo())
+      .catch(() => showImage()); 
   }
-
-
-  bgVideo.addEventListener('error', showImage);
-  bgVideo.addEventListener('stalled', showImage);
-  bgVideo.addEventListener('abort', showImage);
+} catch (err) {
+  showImage(); 
 }
 
+    const winners = [
+      { name: "Gab", prize: "$60", facebook: "https://web.facebook.com/thisisnotgab", date: "October 19, 2025" },
+      { name: "**** ****", prize: "$100", facebook: "https://facebook.com/", date: "October 26, 2025" },
+     
+    ];
 
-const winners = [
-  { name: "Gab", prize: "$60", facebook: "https://web.facebook.com/thisisnotgab", date: "October 19, 2025" },
-  { name: "**** ****", prize: "$100", facebook: "", date: "October 26, 2025" },
+    const proofs = [
+      { images: ["https://img.eselt.de/img/18689998_aCLnGfSwdS7hsq0o/ad.jpg", "https://img.eselt.de/img/18693492_f0qGrchfhEgdBjzc/ad.jpg",  ], date: "October 19, 2025" },
+     
+     
+    ];
 
  
+    const winnersList = document.getElementById('winnersList');
+    winners.forEach(w => {
+      const card = document.createElement('div');
+      card.className = 'winner-card';
+      card.innerHTML = `
+        <a href="${w.facebook}" target="_blank" rel="noopener noreferrer">${w.name}</a>
+        <span class="winner-prize">${w.prize}</span>
+        <span class="winner-date">${w.date}</span>`;
+      winnersList.appendChild(card);
+    });
 
+   
+    const proofList = document.getElementById('proofList');
+    proofs.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'winner-card';
+      const images = document.createElement('div');
+      images.style.display = 'flex';
+      images.style.gap = '0.5rem';
+      images.style.justifyContent = 'center';
+      images.style.overflowX = 'auto';
+      p.images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src; img.onclick = () => openModal(src);
+        images.appendChild(img);
+      });
+      const date = document.createElement('span');
+      date.className = 'winner-date';
+      date.textContent = p.date;
+      card.append(images, date);
+      proofList.appendChild(card);
+    });
 
   
-];
+    const imgModal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModal = document.getElementById('closeModal');
+    function openModal(src) { modalImg.src = src; imgModal.style.display = 'flex'; }
+    closeModal.onclick = () => imgModal.style.display = 'none';
+    imgModal.onclick = e => { if (e.target === imgModal) imgModal.style.display = 'none'; };
 
-const winnersList = document.getElementById('winnersList');
-winners.forEach(w => {
-  const card = document.createElement('div');
-  card.className = 'winner-card';
-  card.innerHTML = `
-    <a href="${w.facebook}" target="_blank" class="winner-name">${w.name}</a>
-    <span class="winner-prize">${w.prize}</span>
-    <span class="winner-date">${w.date}</span>
-  `;
-  winnersList.appendChild(card);
-});
+   
+    function handleArrowVisibility(sectionId, arrowId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      const scrollEl = section.querySelector('.scrollable-container');
+      const arrow = document.getElementById(arrowId);
+      if (!scrollEl || !arrow) return;
 
-const proofs = [
-  { images: ["https://img.eselt.de/img/18689998_aCLnGfSwdS7hsq0o/ad.jpg", "https://img.eselt.de/img/18693492_f0qGrchfhEgdBjzc/ad.jpg"], date: "October 19, 2025" },
+   
+      arrow.style.opacity = '0';
 
-];
+      function updateArrow() {
+     
+        if (!scrollEl || !arrow) return;
+        const canScroll = scrollEl.scrollHeight > scrollEl.clientHeight + 5;
+        arrow.style.opacity = canScroll && scrollEl.scrollTop <= 2 ? '1' : '0';
+      }
 
-const proofList = document.getElementById('proofList');
+   
+      scrollEl.addEventListener('scroll', updateArrow);
+      window.addEventListener('resize', updateArrow);
+      window.addEventListener('load', updateArrow);
 
-proofs.forEach(p => {
-  const card = document.createElement('div');
-  card.className = 'winner-card';
-  
-  const imagesContainer = document.createElement('div');
-  imagesContainer.style.display = 'flex';
-  imagesContainer.style.gap = '0.5rem';
-  imagesContainer.style.justifyContent = 'center';
-  imagesContainer.style.overflowX = 'auto';
-  
-  p.images.forEach(imgSrc => {
-    const imgEl = document.createElement('img');
-    imgEl.src = imgSrc;
-    imgEl.alt = "Proof Image";
-    imgEl.style.height = '150px';
-    imgEl.style.cursor = 'pointer';
     
-    imgEl.onclick = () => {
-      document.getElementById('modalImg').src = imgSrc;
-      document.getElementById('imgModal').style.display = 'flex';
-    };
-    
-    imagesContainer.appendChild(imgEl);
-  });
-
-  card.appendChild(imagesContainer);
-
-  const dateEl = document.createElement('span');
-  dateEl.className = 'winner-date';
-  dateEl.textContent = p.date;
-  card.appendChild(dateEl);
-
-  proofList.appendChild(card);
-});
-
-const imgModal = document.getElementById('imgModal');
-const modalImg = document.getElementById('modalImg');
-const closeModal = document.getElementById('closeModal');
-
-closeModal.addEventListener('click', () => {
-  imgModal.style.display = 'none';
-  modalImg.src = '';
-});
-
-imgModal.addEventListener('click', (e) => {
-  if(e.target === imgModal) {
-    imgModal.style.display = 'none';
-    modalImg.src = '';
-  }
-});
-
-function handleArrowVisibility(containerId, arrowId) {
-  const box = document.getElementById(containerId);
-  const arrow = document.getElementById(arrowId);
-  if (!box || !arrow) return;
-
-  function updateArrow() {
-    const canScroll = box.scrollHeight > box.clientHeight + 2;
-    if (!canScroll) {
-      arrow.style.opacity = "0"; 
-      return;
+      updateArrow();
     }
 
-    arrow.style.opacity = box.scrollTop <= 2 ? "1" : "0";
-  }
-
-  box.addEventListener("scroll", updateArrow);
-  window.addEventListener("resize", updateArrow);
-  window.addEventListener("load", updateArrow);
-
-  updateArrow(); 
-}
-
-handleArrowVisibility("infoBox", "infoArrow");
-handleArrowVisibility("winnersList", "winnerArrow");
-handleArrowVisibility("proofList", "proofArrow");
+    handleArrowVisibility('infoBox', 'infoArrow');
+    handleArrowVisibility('winnersBox', 'winnerArrow');
+    handleArrowVisibility('proofBox', 'proofArrow');
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const css = `
-    * {
-      -webkit-tap-highlight-color: transparent !important;
-      -webkit-user-select: none !important;
-      -moz-user-select: none !important;
-      -ms-user-select: none !important;
-      user-select: none !important;
-      outline: none !important;
-    }
-    a, img, button, div, span {
-      -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-    }
-    *:focus { outline: none !important; box-shadow: none !important; }
-  `;
-  const style = document.createElement('style');
-  style.textContent = css;
-  document.head.appendChild(style);
-});
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutModal = document.getElementById('aboutModal');
+    const closeAbout = document.getElementById('closeAbout');
+
+    aboutBtn.onclick = () => { aboutModal.style.display = 'flex'; };
+    closeAbout.onclick = () => { aboutModal.style.display = 'none'; };
+    aboutModal.onclick = e => { if (e.target === aboutModal) aboutModal.style.display = 'none'; };
+
+
+
+
+
+
+
+
+  
