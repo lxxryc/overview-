@@ -246,6 +246,11 @@ ul.bullet li.list-header {
   margin-bottom: 6px;
 }
 
+
+.no-zoom {
+  font-size: 16px !important;
+}
+
 </style>
 </head>
 
@@ -450,6 +455,7 @@ document.addEventListener('click', e => {
 
   // Create Zoom Controls
   const zoomControls = document.createElement('div');
+  zoomControls.classList.add("no-zoom");
   zoomControls.style.margin = '8px 0';
   zoomControls.innerHTML = `
     <strong>Zoom:</strong>
@@ -458,6 +464,7 @@ document.addEventListener('click', e => {
     <strong><button id="zoomOut">-</button></strong>
     
   `;
+  settingsPanel.classList.add("no-zoom");
   settingsPanel.appendChild(zoomControls);
 
   let zoomLevel = 60; // 100% default
