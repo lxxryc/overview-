@@ -3,14 +3,256 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-
+<title>Louís Ryc — Ultra Modern Reward Magazine</title>
 <meta name="description" content="Official reward portal by Louís Ryc — mechanics and verified winners." />
-<link rel="stylesheet" href="result.css">
 
+<style>
+/* ================= GLOBAL VARIABLES ================= */
+:root {
+  --accent: black;
+  --bg: #e6e6e9;               /* softer gray background */
+  --card: #ffffff;             /* card background */
+  --text: #1e1e1e;             /* text color */
+  --muted: #555;               /* muted color for secondary text */
+  --shadow-soft: 0 4px 16px rgba(0,0,0,0.1); /* shadows */
+  --border: rgba(8,0,0,0.12);  /* card borders */
+  --radius: 16px;              /* border radius */
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+}
+
+body.dark-mode {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --text: #e5e5e5;
+  --muted: #aaa;
+  --shadow-soft: 0 3px 12px rgba(0,0,0,0.3);
+  --border: rgba(255,255,255,0.1);
+}
+
+/* ================= GLOBAL STYLES ================= */
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+  padding: 18px 14px 80px;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s;
+  user-select: none;
+}
+
+button:focus, .tab-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.wrap { width: 100%; max-width: 900px; }
+
+h1,h2,h3 { font-family: "Playfair Display", serif; margin-bottom: 8px; color: var(--text); }
+p, li, div, span { font-family: "Inter", system-ui, sans-serif; color: var(--text); }
+
+/* ================= TAB BAR ================= */
+.tab-bar {
+  display: flex;
+  margin-bottom: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+  color: var(--text);
+
+  /* REMOVE default focus/outline/highlight */
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* mobile */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.tab-btn:first-child { border-radius: 12px 0 0 12px; border-right: none; }
+.tab-btn:last-child { border-radius: 0 12px 12px 0; border-left: none; }
+.tab-btn:not(:first-child):not(:last-child) { border-radius: 0; border-left: none; border-right: none; }
+
+.tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Optional: Prevent outline on focus from keyboard/tab navigation */
+.tab-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+/* ================= SECTIONS ================= */
+.section { display:none; animation: fadeIn .4s ease; }
+.section.active { display:block; }
+
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+/* ================= CARDS / MODULES ================= */
+.card, .module {
+  background: var(--card);
+  color: var(--text);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 16px;
+  text-align: justify;
+  transition: all 0.3s;
+}
+
+.module-text { font-size: 1rem; line-height:1.6; text-align:justify; }
+
+ul.bullet { list-style:none; padding:0; margin:0; }
+ul.bullet li { padding:8px 0; border-bottom:1px dashed var(--border); font-size: 0.87rem; color:var(--muted); }
+ul.bullet li:last-child { border-bottom:none; }
+
+/* ================= WINNERS ================= */
+#winnersList {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* ================= WINNERS ================= */
+#winnersList {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Professional card-style shadow */
+/* ================= WINNERS ================= */
+.winner-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: none;  /* remove all shadow */
+  margin-bottom: 12px;
+  transition: all 0.3s;
+}
+
+.winner-item .avatar {
+  flex-shrink: 0;
+  width: 3.3rem;
+  height: 3.3rem;
+  border-radius: 10px;
+  background: rgba(0,191,166,0.15);
+  font-weight: 700;
+  font-size: 2.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  box-shadow: none; /* remove avatar shadow */
+  transition: all 0.3s;
+}
+
+
+.winner-name a {
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.winner-prize {
+  font-weight: 700;
+  font-size: 0.93rem;
+}
+
+.winner-date {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.winner-prize {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #2ecc71; /* green color for prizes */
+}
+
+
+/* ================= FOOTER ================= */
+footer {
+  text-align:center; font-size:13px; color:var(--muted);
+  position:fixed; bottom:0; left:0; width:100%;
+  background:var(--bg); padding:12px 0;
+  border-top:1px solid var(--border);
+  transition: all 0.3s; z-index:10;
+}
+
+/* ================= SETTINGS PANEL ================= */
+#settingsToggle {
+  position:fixed; top:50%; right:0; transform:translateY(-50%);
+  background:black; color:#fff; cursor:grab;
+  width:46px; height:46px; display:flex; align-items:center; justify-content:center;
+  border-radius:8px 0 0 8px;
+  z-index:1000; transition: all 0.3s; touch-action:none;
+}
+
+#settingsIcon { font-size:22px; font-weight: bold; color: white; transition:transform 0.4s linear; display:inline-block; }
+#settingsToggle.spin #settingsIcon { transform:rotate(360deg); }
+
+#settingsPanel {
+  position:fixed; top:50%; right:-220px; transform:translateY(-50%);
+  width:200px; background:var(--card); border-radius:8px 0 0 8px;
+  padding:16px; border:1px solid var(--border);
+  box-shadow:-2px 2px 12px rgba(0,0,0,0.2);
+  z-index:2000; transition:all 0.3s;
+}
+
+#settingsPanel.open { right:1px; }
+#settingsPanel button { width:100%; margin:4px 0; padding:6px 8px; border-radius:6px; border:1px solid rgba(0,0,0,0.2); background:rgba(0,0,0,0.05); color:var(--text); cursor:pointer; transition:all 0.3s; }
+
+@media (min-width:820px){ body{padding:40px 20px;} .tab-bar{position:static;} }
+
+#phTimeWidget {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+  max-width: 300px;
+  margin: 0 auto 16px;
+}
+
+
+
+
+ul.bullet li.list-header {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+
+</style>
 </head>
 
 <body>
 <div class="wrap">
+
 
   <!-- ================= TAB BAR ================= -->
   <div class="tab-bar">
@@ -23,32 +265,60 @@
   <section class="section active" id="tab-about">
     <div class="card">
       <div class="module-text">
-        <strong><span style="color: darkorange;">Louís Ryc</span></strong>: I created this initiative to share a portion of my extra funds whenever available — and whenever I can.
+        <strong><span>Louís Ryc</span></strong>: I created this initiative to share a portion of my extra funds whenever available — and whenever I can.
         If you’ve reached this page through the link on my bio and are wondering about the value’s legitimacy and the purpose of the countdown. <br><br>
-        <strong><span style="color: darkorange;">For your assurance</span></strong>: The prize is <strong><span>legit</span></strong>, but the value may still vary based on available funds. The countdown indicates when participation becomes available; and once it opens, it remains active only for a specific time.
+        <strong><span>For your assurance</span></strong>. The prize is <strong><span>legit</span></strong>, but the value may still vary based on available funds. The countdown indicates when participation becomes available; and once it opens, it remains active only for a limited time.
         <br><br>
         The goal is simple — try your luck, and I’ll personally handle the prize.
         I understand that the amount may be small; nevertheless, I hope it’s still appreciated despite its simplicity.
         <br><br>
         Please take a moment to review the details provided throughout, especially if there’s a <span><strong>value</strong></span> displayed.
         If it appears as pending or unavailable, that’s all there is for now.
-        If a countdown appears, it indicates something — <span>so stay tuned!</span>
       </div>
     </div>
   </section>
 
   <!-- ================= MECHANICS ================= -->
-  <section class="section" id="tab-mechanics">
-    <div class="module">
-      <ul class="bullet">
-        <li>Select preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
-        <li><strong>Submit your details.</strong></li>
-        <li>The admin will place all submitted numbers into a random draw, and the selected number will receive the prize.</li>
-        <li>The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time.</li>
-        <li>Participation is voluntary, and personal information will remain confidential.</li>
-      </ul>
-    </div>
-  </section>
+<section class="section" id="tab-mechanics">
+  <!-- General Mechanics Card -->
+  <div class="module">
+    <strong>General Mechanics</strong>
+    <ul class="bullet">
+      <li>Select preferred reward: <strong>Load</strong> / <strong>GCash</strong>.</li>
+      <li><strong>Submit your details.</strong></li>
+      <li>The admin will place all submitted numbers into a random draw, and the selected number will receive the prize.</li>
+      <li>The prize is <strong>legit</strong> and will be sent safely. You just have to wait depending on the admin’s capacity at the time.</li>
+      <li>Participation is voluntary, and personal information will remain confidential.</li>
+    </ul>
+  </div>
+
+  <!-- Quiz Mechanics Card -->
+  <div class="module">
+    <strong>Quiz</strong>
+    <ul class="bullet">
+      <li>Question will be posted on a specific date and time.</li>
+      <li>Participants must submit their answers through the provided form.</li>
+      <li>Only one entry per participant is allowed per quiz.</li>
+      <li>The first correct answer or randomly selected correct answer will win.</li>
+      <li>Prizes will be sent within 3–5 business days.</li>
+      <li>Keep your contact information updated to claim your prize.</li>
+    </ul>
+  </div>
+
+  <!-- Random Feature Card -->
+  <div class="module">
+    <strong>Random Feature</strong>
+    <ul class="bullet">
+      <li>This feature will randomly select winners from all entries.</li>
+      <li>Every participant has an equal chance of being selected.</li>
+      <li>Winners will be notified via the contact information provided.</li>
+      <li>Prizes will be awarded automatically based on the system selection.</li>
+      <li>Results are final and cannot be contested.</li>
+    </ul>
+  </div>
+</section>
+
+
 
   <!-- ================= WINNERS ================= -->
   <section class="section" id="tab-winners">
@@ -63,14 +333,186 @@
 </div>
 
 <!-- ================= SETTINGS ================= -->
-<div id="settingsToggle"><span id="settingsIcon">🛠️</span></div>
+<div id="settingsToggle"><span id="settingsIcon">LX</span></div>
 <div id="settingsPanel">
+  
   <h3>Settings</h3>
   <button id="darkModeBtn">Change Theme</button>
   <hr>
-  <p style="font-size:13px; padding: 5px; color:var(--muted);" >You can drag the gear icon to reposition</p>
+  <p style="font-size:13px; padding: 5px; color:var(--muted);" >You can drag the icon to reposition</p>
 </div>
-<script src="result.js"></script>
+
+<script>
+/* ================= TAB SWITCHING ================= */
+const tabBtns = document.querySelectorAll('.tab-btn');
+const sections = document.querySelectorAll('.section');
+tabBtns.forEach(btn => btn.onclick = () => {
+  tabBtns.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  sections.forEach(s=>s.classList.remove('active'));
+  document.querySelector('#tab-'+btn.dataset.tab).classList.add('active');
+});
+
+/* ================= WINNERS LIST ================= */
+const winnersData=[
+  {name:"GAB", prize:"$60.00", facebook:"https://web.facebook.com/thisisnotgab", date:"October 19, 2025"},
+
+];
+const winnersList=document.getElementById('winnersList');
+winnersData.forEach(w=>{
+  const el=document.createElement('div');
+  el.className='winner-item';
+  el.innerHTML=`<div class="avatar">${w.name[0]}</div>
+                  <div>
+                    <div class="winner-name"><a href="${w.facebook}" target="_blank">${w.name}</a></div>
+                    <div class="winner-prize">${w.prize}</div>
+                    <div class="winner-date">${w.date}</div>
+                  </div>`;
+  winnersList.appendChild(el);
+});
+
+const settingsToggle = document.getElementById('settingsToggle');
+const settingsPanel = document.getElementById('settingsPanel');
+const darkModeBtn = document.getElementById('darkModeBtn');
+
+let isDragging = false, dragMoved = false, startY = 0, startTop = 0;
+
+/* DRAG LOGIC (unchanged, optional) */
+function startDrag(y) {
+  isDragging = true; dragMoved = false; startY = y;
+  startTop = parseInt(window.getComputedStyle(settingsToggle).top) || window.innerHeight*0.5;
+  settingsToggle.style.transition = 'none';
+  settingsPanel.style.transition = 'none';
+}
+
+function doDrag(y) {
+  if(!isDragging) return;
+  const delta = y - startY;
+  if(Math.abs(delta) > 3) dragMoved = true;
+  let newTop = startTop + delta;
+  newTop = Math.max(20, Math.min(window.innerHeight - 60, newTop));
+  settingsToggle.style.top = newTop + 'px';
+  settingsPanel.style.top = newTop + 'px';
+}
+
+function stopDrag() {
+  isDragging = false;
+  setTimeout(() => dragMoved = false, 120);
+  settingsToggle.style.cursor = 'grab';
+  settingsToggle.style.transition = 'top 0.2s';
+  settingsPanel.style.transition = 'top 0.2s';
+}
+
+settingsToggle.addEventListener('mousedown', e => { 
+  if(e.button !== 0) return; 
+  startDrag(e.clientY); 
+  settingsToggle.style.cursor = 'grabbing';
+});
+document.addEventListener('mousemove', e => doDrag(e.clientY));
+document.addEventListener('mouseup', stopDrag);
+
+settingsToggle.addEventListener('touchstart', e => startDrag(e.touches[0].clientY), {passive:true});
+settingsToggle.addEventListener('touchmove', e => { if(isDragging){ e.preventDefault(); doDrag(e.touches[0].clientY); }}, {passive:false});
+settingsToggle.addEventListener('touchend', stopDrag);
+
+/* ================= CLICK GEAR TO TOGGLE PANEL ================= */
+settingsToggle.addEventListener('click', e => {
+  e.stopPropagation();
+  if(dragMoved) return; // ignore drag clicks
+  settingsPanel.classList.toggle('open'); // just toggle visibility
+});
+
+/* ================= CLICK OUTSIDE TO HIDE PANEL ================= */
+document.addEventListener('click', e => {
+  if(dragMoved) return;
+  if(settingsPanel.classList.contains('open') && !settingsPanel.contains(e.target) && !settingsToggle.contains(e.target)) {
+    settingsPanel.classList.remove('open'); // hide panel
+  }
+});
+
+/* ================= DARK MODE ================= */
+(function initDarkMode(){
+  const saved = localStorage.getItem('darkMode');
+  if(saved === 'enabled') document.body.classList.add('dark-mode');
+  else document.body.classList.remove('dark-mode');
+
+  if(darkModeBtn){
+    darkModeBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    });
+  }
+})();
+
+// ================= RELIABLE ZOOM FEATURE =================
+(function initZoom() {
+  const html = document.documentElement;
+
+  // Create Zoom Controls
+  const zoomControls = document.createElement('div');
+  zoomControls.style.margin = '8px 0';
+  zoomControls.innerHTML = `
+    <strong>Zoom:</strong>
+    <button id="zoomIn">+</button>
+    <span id="zoomValue">100%</span>
+    <strong><button id="zoomOut">-</button></strong>
+    
+  `;
+  settingsPanel.appendChild(zoomControls);
+
+  let zoomLevel = 60; // 100% default
+  const zoomStep = 10; // 10% per click
+  const minZoom = 60;  // 60%
+  const maxZoom = 150; // 150%
+  const zoomValueEl = document.getElementById('zoomValue');
+  const zoomInBtn = document.getElementById('zoomIn');
+  const zoomOutBtn = document.getElementById('zoomOut');
+
+  function updateZoom() {
+    html.style.fontSize = zoomLevel + '%';
+    zoomValueEl.textContent = zoomLevel + '%';
+  }
+
+  zoomInBtn.addEventListener('click', () => {
+    zoomLevel = Math.min(maxZoom, zoomLevel + zoomStep);
+    updateZoom();
+  });
+
+  zoomOutBtn.addEventListener('click', () => {
+    zoomLevel = Math.max(minZoom, zoomLevel - zoomStep);
+    updateZoom();
+  });
+
+  // Initialize
+  updateZoom();
+})();
+
+// ================= PHILIPPINE STANDARD TIME WIDGET =================
+(function initPHTime() {
+  const phTimeEl = document.getElementById('phTime');
+
+  function updatePHTime() {
+    const now = new Date();
+
+    // Convert local time to UTC, then add 8 hours for Philippines (UTC+8)
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const phTime = new Date(utc + 8 * 3600000);
+
+    // Format hours, minutes, seconds
+    const h = String(phTime.getHours()).padStart(2, '0');
+    const m = String(phTime.getMinutes()).padStart(2, '0');
+    const s = String(phTime.getSeconds()).padStart(2, '0');
+
+    phTimeEl.textContent = `${h}:${m}:${s}`;
+  }
+
+  updatePHTime(); // initial call
+  setInterval(updatePHTime, 1000); // update every second
+})();
+
+
+</script>
 
 </body>
 </html>
