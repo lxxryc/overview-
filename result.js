@@ -1,5 +1,5 @@
 
-
+<script>
 /* ================= TAB SWITCHING ================= */
 const tabBtns = document.querySelectorAll('.tab-btn');
 const sections = document.querySelectorAll('.section');
@@ -169,4 +169,4 @@ document.addEventListener('click', e => {
 })();
 
 
-
+</script>
